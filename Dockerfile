@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:lts
-RUN /usr/local/bin/install-plugins.sh gitlab-plugin
-ENV JAVA_OPTS -Xms256m -Xmx512m
+RUN /usr/local/bin/install-plugins.sh gitlab-plugin publish-over-dropbox
+ENV JAVA_OPTS -Xms256m -Xmx448m
 ENTRYPOINT []
-CMD /usr/local/bin/jenkins.sh --httpPort=$PORT
+CMD /sbin/tini -s -- /usr/local/bin/jenkins.sh --httpPort=$PORT
